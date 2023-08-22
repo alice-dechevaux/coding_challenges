@@ -16,3 +16,29 @@ function isIsogram(str){
   }
   return true
 }
+
+//top solution
+
+function isIsogram(str){
+	return new Set(str.toUpperCase()).size == str.length;
+}
+
+//new Set() returns an array of values. Each value will only occur once. It can be used with iterable datatypes. It is a constructor and requires the use of "new"
+
+//08/22/2023
+
+//Your task is to write a function that takes a String and returns an Array/list with the length of each word added to each element .
+
+// Note: String will have at least one element; words will always be separated by a space. 
+
+function addLength(str) {
+  return str.split(" ").map((x) => x + " " + x.length)
+}
+
+//top solution
+
+function addLength(str){
+  return str.split(" ").map(s => `${s} ${s.length}`)
+}
+
+//same idea just using template literal instead of concatenation which is a bit cleaner 
