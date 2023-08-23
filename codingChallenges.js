@@ -119,3 +119,10 @@ function findEvenIndex(arr)
 }
 
 //This is a more efficient approach to the problem that simply makes one adjustment to both sums for each index of the array instead of iterating through the entire array again every time 
+
+
+
+
+
+
+//git commit -a --allow-empty-message -m ''
