@@ -76,3 +76,46 @@ function nbDig(n, d) {
   }
 
 // This approach works similarly but uses .split to create an array of individual digits and a forEach loop to compare each array element to d. I did not know that you could use null with a ternary operator to do nothing when one of the two conditions is met
+
+//08/23/2034
+
+//You are going to be given an array of integers. Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+
+function findEvenIndex(arr)
+{
+  let sumLeft
+  let sumRight
+  for (let i = 0; i < arr.length; i++) {
+    sumLeft = 0
+    sumRight = 0
+    for (let j = i - 1; j >= 0; j--) {
+      if (!arr[j]) {
+        break
+      } else sumLeft += arr[j]
+    }
+    for (let k = i + 1; k < arr.length; k++) {
+      sumRight += arr[k]
+    }
+    if (sumLeft === sumRight) {
+      return i
+    }
+  }
+  return -1
+}
+
+//top solution
+
+function findEvenIndex(arr)
+{
+  var left = 0, right = arr.reduce(function(pv, cv) { return pv + cv; }, 0);
+  for(var i = 0; i < arr.length; i++) {
+      if(i > 0) left += arr[i-1];
+      right -= arr[i];
+      
+      if(left == right) return i;
+  }
+  
+  return -1;
+}
+
+//This is a more efficient approach to the problem that simply makes one adjustment to both sums for each index of the array instead of iterating through the entire array again every time 
