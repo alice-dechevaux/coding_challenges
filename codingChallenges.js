@@ -155,6 +155,10 @@ function toHex(d) {
 
 //Number.toString(16) will convert any number into a hex value so splitting the digits before converting in my code was redundant. Adding the zero here accounts for single digit results while .slice(-2) removes the 0 in the case of two digit results. The use of Number() is unnecessary as the input value is already a number and would need to be in order for the preceding comparisons to 0 and 255 to work. The abstraction of the toHex function away from the rgb function also seems unnecessary as expanding the code to allow for conversion to another color type would still require writing two additional functions. Maybe you could solve this problem by adding the conversion function as a parameter? But I'm not sure if there's a way to get around the need to call the function by name
 
+//08/25/2023
+
+
+
 //git commit -a --allow-empty-message -m ''
 
 
