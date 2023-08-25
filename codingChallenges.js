@@ -157,6 +157,56 @@ function toHex(d) {
 
 //08/25/2023
 
+// Define a function that removes duplicates from an array of non negative numbers and returns it as a result.
+
+// The order of the sequence has to stay the same.
+
+function distinct(a) {
+  for (let i = 0; i < a.length; i++) {
+    if (i != a.lastIndexOf(a[i])) {
+      a.splice(a.lastIndexOf(a[i]), 1)
+      i--
+    }
+  }
+  return a
+}
+
+//Above was my initial solution but after thinking about how to simplify and remember what I've learned about sets I came up with this much simpler solution:
+
+function distinct(a) {
+  return Array.from(new Set(a))
+}
+
+//top solution
+
+function distinct(a) {
+  return [...new Set(a)];
+}
+
+//Same idea just uses a different method of converting the set to an array
+
+// In this Kata, you will be given an array of integers whose elements have both a negative and a positive value, except for one integer that is either only negative or only positive. Your task will be to find that integer. 
+
+function solve(arr){
+  console.log(arr)
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j] * -1) {
+        arr.splice(i, 1)
+        j--
+        arr.splice(j, 1)
+        i--
+      }
+    }
+  }
+  return arr[0]
+};
+
+//top solution 
+
+const solve=a=>a.find(e=>!a.includes(-e));
+
+//No explanation necessary. Completely forgot about array.find()
 
 
 //git commit -a --allow-empty-message -m ''
