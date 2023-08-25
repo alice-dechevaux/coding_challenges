@@ -121,8 +121,40 @@ function findEvenIndex(arr)
 //This is a more efficient approach to the problem that simply makes one adjustment to both sums for each index of the array instead of iterating through the entire array again every time 
 
 
+//08/24/2023
 
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
 
+// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
 
+function rgb(r, g, b){
+  let result = []
+  let values = [r, g, b]
+  for (i in values) {
+    values[i] = values[i] < 0 ? 0 : values[i]
+    values[i] = values[i] > 255 ? 255 : values[i]
+    result.push(Math.floor(values[i]/16), values[i]%16)
+  }
+  for(i in result) {
+    result[i] = result[i].toString(16).toUpperCase()
+    }
+  return result.join("")
+}
+
+//top solution
+
+function rgb(r, g, b){
+	return toHex(r)+toHex(g)+toHex(b);
+}
+
+function toHex(d) {
+    if(d < 0 ) {return "00";}
+    if(d > 255 ) {return "FF";}
+    return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
+}
+
+//Number.toString(16) will convert any number into a hex value so splitting the digits before converting in my code was redundant. Adding the zero here accounts for single digit results while .slice(-2) removes the 0 in the case of two digit results. The use of Number() is unnecessary as the input value is already a number and would need to be in order for the preceding comparisons to 0 and 255 to work. The abstraction of the toHex function away from the rgb function also seems unnecessary as expanding the code to allow for conversion to another color type would still require writing two additional functions. Maybe you could solve this problem by adding the conversion function as a parameter? But I'm not sure if there's a way to get around the need to call the function by name
 
 //git commit -a --allow-empty-message -m ''
+
+
