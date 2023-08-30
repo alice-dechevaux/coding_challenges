@@ -396,4 +396,87 @@ function factorial(n) {
 
 //This condenses the code by using the ternary operator instead of the else if statement
 
+//08/29/2023
+
+// You are given a string containing a sequence of character sequences separated by commas.
+
+// Write a function which returns a new string containing the same character sequences except the first and the last ones but this time separated by spaces.
+
+// If the input string is empty or the removal of the first and last items would cause the resulting string to be empty, return an empty value (represented as a generic value NULL in the examples below).
+
+function array(string) {
+  string = string.split(",")
+  if (string.length < 3) {
+    return null 
+  }
+  string.pop()
+  string.shift()
+  return string.join(" ")
+}
+
+//top solution 
+
+function array(string){
+  return string.split(",").slice(1,-1).join(" ") || null;
+}
+
+//08/30/2023
+
+// In this kata you have to write a method that folds a given array of integers by the middle x-times.
+
+// An example says more than thousand words:
+
+// Fold 1-times:
+// [1,2,3,4,5] -> [6,6,3]
+
+// A little visualization (NOT for the algorithm but for the idea of folding):
+
+//  Step 1         Step 2        Step 3       Step 4       Step5
+//                      5/           5|         5\          
+//                     4/            4|          4\      
+// 1 2 3 4 5      1 2 3/         1 2 3|       1 2 3\       6 6 3
+// ----*----      ----*          ----*        ----*        ----*
+
+
+// Fold 2-times:
+// [1,2,3,4,5] -> [9,6]
+
+// As you see, if the count of numbers is odd, the middle number will stay. Otherwise the fold-point is between the middle-numbers, so all numbers would be added in a way.
+
+// The array will always contain numbers and will never be null. The parameter runs will always be a positive integer greater than 0 and says how many runs of folding your method has to do.
+
+// If an array with one element is folded, it stays as the same array.
+
+// The input array should not be modified!
+
+function foldArray(array, runs)
+{
+  console.log(array)
+  let copy = array
+  let result
+  for (let i = 0; i < runs; i++) {
+    result = []
+    let x = copy.length - 1
+    for (let j = 0; j < x; j++) {
+      result.push(copy[j] + copy[x])   
+      x--
+    }
+    if (copy.length % 2 !== 0) {
+      result.push(copy[Math.floor(copy.length / 2)])
+    }
+    copy = result
+  }
+  return result;
+}
+
+//top solution
+
+function foldArray(a, n) {
+  const r = [], c = a.slice();
+  while (c.length) r.push(c.pop() + (c.shift() || 0));
+  return n - 1 ? foldArray(r, n - 1) : r;
+}
+
+
+
 //git commit -a --allow-empty-message -m ''
