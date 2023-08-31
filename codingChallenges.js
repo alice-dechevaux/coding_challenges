@@ -477,6 +477,79 @@ function foldArray(a, n) {
   return n - 1 ? foldArray(r, n - 1) : r;
 }
 
+//08/31/2023
+
+// I assume you are all familiar with the famous Fibonacci sequence, having to get each number as the sum of the previous two (and typically starting with either [0,1] or [1,1] as the first numbers).
+
+// While there are plenty of variation on it (including a few I wrote), usually the catch is all the same: get a starting (signature) list of numbers, then proceed creating more with the given rules.
+
+// What if you were to get to get two parameters, one with the signature (starting value) and the other with the number you need to sum at each iteration to obtain the next one?
+
+// And there you have it, getting 3 parameters:
+
+//     a signature of length length
+//     a second parameter is a list/array of indexes of the last length elements you need to use to obtain the next item in the sequence (consider you can end up not using a few or summing the same number multiple times)' in other words, if you get a signature of length 5 and [1,4,2] as indexes, at each iteration you generate the next number by summing the 2nd, 5th and 3rd element (the ones with indexes [1,4,2]) of the last 5 numbers
+//     a third and final parameter is of course which sequence element you need to return (starting from zero, I don't want to bother you with adding/removing 1s or just coping with the fact that after years on CodeWars we all count as computers do):
+
+//first solution 
+
+function customFib(signature, indexes, n) {
+  if (n < signature.length) {
+    return signature[n]
+  }
+  else {
+    let next = 0
+    while (signature.length <= n) {
+      for(let i = 0; i < indexes.length; i++) {
+        next += signature[indexes[i]]
+        indexes[i] += 1
+      }
+      signature.push(next)
+      next = 0
+    }
+    console.log(signature)
+      return signature[n]
+  }
+}
+
+//second solution using recursion 
+
+function customFib(signature, indexes, n) {
+  if (n < signature.length) {
+    console.log(signature)
+    return signature[n]
+  } else {
+    let next = 0
+    for (let i = 0; i < indexes.length; i++) {
+      next += signature[indexes[i]]
+      indexes[i] += 1
+    }
+    signature.push(next)
+    return customFib(signature, indexes, n)
+  }
+}
+
+//top solution 
+
+function customFib(signature, indexes, n){
+  
+  if (n < signature.length)
+    return signature[n];
+
+  let term = indexes.reduce((a, b) => a + signature[b], 0)
+  let next = signature.slice(1).concat(term);
+  
+  return customFib(next, indexes, n - 1);
+
+}
+
+//The use of reduce here to find the next element makes sense to me and I think is a good idea as it reduces four lines of code to one. Removing the first element of the signature array and returning the function with n-1 as a parameter seems unnecessary though
+
+
+
+
+
+
 
 
 //git commit -a --allow-empty-message -m ''
