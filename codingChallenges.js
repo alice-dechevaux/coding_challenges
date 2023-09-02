@@ -545,11 +545,34 @@ function customFib(signature, indexes, n){
 
 //The use of reduce here to find the next element makes sense to me and I think is a good idea as it reduces four lines of code to one. Removing the first element of the signature array and returning the function with n-1 as a parameter seems unnecessary though
 
+//09/01/2023
 
+// You'll be given a list of two strings, and each will contain exactly one colon (":") in the middle (but not at beginning or end). The length of the strings, before and after the colon, are random.
 
+// Your job is to return a list of two strings (in the same order as the original list), but with the characters after each colon swapped.
 
+function tailSwap(arr) {
+  arr = arr.map((x) => x.split(":"))
+  result = []
+  pair1 = []
+  pair2=[]
+  pair1.push(arr[0][0], arr[1][1])
+  pair1 = pair1.join(":")
+  pair2.push(arr[1][0], arr[0][1])
+  pair2 = pair2.join(":")
+  result.push(pair1, pair2)
+  return result
+}
 
+//top solution
 
+function tailSwap(arr) {
+  let newArr = arr
+  .map(string => string.split(':'))
+  return [newArr[0][0]+':'+newArr[1][1], newArr[1][0]+':'+newArr[0][1]];
+}
+
+//Using concatenation here makes a whole lot of sense and makes things much simpler
 
 
 //git commit -a --allow-empty-message -m ''
