@@ -574,5 +574,65 @@ function tailSwap(arr) {
 
 //Using concatenation here makes a whole lot of sense and makes things much simpler
 
+//09/02/2023
+
+// Write a function that accepts two square matrices (N x N two dimensional arrays), and return the sum of the two. Both matrices being passed into the function will be of size N x N (square), containing only integers.
+
+// How to sum two matrices:
+
+// Take each cell [n][m] from the first matrix, and add it with the same [n][m] cell from the second matrix. This will be cell [n][m] of the solution matrix. (Except for C where solution matrix will be a 1d pseudo-multidimensional array).
+
+function matrixAddition(a, b){
+  let sum = 0
+  let result = []
+  let row
+  for (let i = 0; i < a.length; i++) {
+    row = []
+    for (let j = 0; j < a[i].length; j++) {
+      sum = a[i][j] + b[i][j]
+      row.push(sum)
+    }
+    result.push(row)
+  }
+  return result
+}
+
+//top solution
+
+function matrixAddition(a, b){
+  return a.map(function(n, i){
+    return n.map(function(o, j){
+      return o + b[i][j];
+    });
+  });
+}
+
+//09/03/2023
+
+// In this simple exercise, you will build a program that takes a value, integer , and returns a list of its multiples up to another value, limit . If limit is a multiple of integer, it should be included as well. There will only ever be positive integers passed into the function, not consisting of 0. The limit will always be higher than the base.
+
+// For example, if the parameters passed are (2, 6), the function should return [2, 4, 6] as 2, 4, and 6 are the multiples of 2 up to 6.
+
+function findMultiples(integer, limit) {
+  let result = []
+  for (let i = 1; integer * i <= limit; i++) {
+    result.push(integer * i)
+  }
+  return result
+}
+
+//top solution
+
+function findMultiples(int,limit){
+  let result = []
+  
+  for (let i = int; i<=limit ; i+=int)
+    result.push(i)
+    
+  return result
+}
+
+
+
 
 //git commit -a --allow-empty-message -m ''
