@@ -632,6 +632,31 @@ function findMultiples(int,limit){
   return result
 }
 
+//09/04/2023
+
+// zipWith ( or zip_with ) takes a function and two arrays and zips the arrays together, applying the function to every pair of values.
+// The function value is one new array.
+
+// If the arrays are of unequal length, the output will only be as long as the shorter one.
+// (Values of the longer array are simply not used.)
+
+// Inputs should not be modified.
+
+function zipWith(fn,a0,a1) {
+  result = []
+  let length = Math.min(a0.length, a1.length)
+  for(let i = 0; i < length; i++) {
+    result.push(fn(a0[i], a1[i]))  
+  }
+  return result
+}
+
+//top solution
+
+function zipWith(fn,a0,a1) {
+  return Array.from({length: Math.min(a0.length, a1.length)}, (_, i) => fn(a0[i], a1[i]));
+}
+
 
 
 
