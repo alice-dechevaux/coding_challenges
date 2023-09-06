@@ -657,6 +657,46 @@ function zipWith(fn,a0,a1) {
   return Array.from({length: Math.min(a0.length, a1.length)}, (_, i) => fn(a0[i], a1[i]));
 }
 
+//09/05/2023
+
+// In this Kata, you will be given an array and your task will be to determine if an array is in ascending or descending order and if it is rotated or not.
+
+// Consider the array [1,2,3,4,5,7,12]. This array is sorted in Ascending order. If we rotate this array once to the left, we get [12,1,2,3,4,5,7] and twice-rotated we get [7,12,1,2,3,4,5]. These two rotated arrays are in Rotated Ascending order.
+
+// Similarly, the array [9,6,5,3,1] is in Descending order, but we can rotate it to get an array in Rotated Descending order: [1,9,6,5,3] or [3,1,9,6,5] etc.
+
+// Arrays will never be unsorted, except for those that are rotated as shown above. Arrays will always have an answer, as shown in the examples below.
+
+function solve (arr) {
+  let a = 0
+  let d = 0
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < arr[i + 1]) {
+      a++
+    }
+    else {
+      d++
+    }
+  }
+  if (d === 0) {
+    return "A"
+  } else if (a === 0) {
+    return "D"
+  } else if (arr[0] > arr[arr.length - 1]) {
+    return "RA"
+  } else return "RD"
+}
+
+//top solution
+
+function solve(arr) {
+  const
+    a = arr[0] < arr[1], b = arr[1] < arr[2], c = arr[arr.length - 1] < arr[0],
+    m = a == b ? a : c;
+  return (c == m ? 'R' : '') + (m ? 'A' : 'D');
+}
+
+
 
 
 
