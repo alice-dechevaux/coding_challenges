@@ -696,6 +696,58 @@ function solve(arr) {
   return (c == m ? 'R' : '') + (m ? 'A' : 'D');
 }
 
+//09/06/2023
+
+// The point is that a natural number N (1 <= N <= 10^9) is given. You need to write a function which finds the number of natural numbers not exceeding N and not divided by any of the numbers [2, 3, 5].
+// Example
+
+// Let's take the number 5 as an example:
+
+//     1 - doesn't divide integer by 2, 3, and 5
+//     2 - divides integer by 2
+//     3 - divides integer by 3
+//     4 - divides integer by 2
+//     5 - divides integer by 5
+
+// Answer: 1
+
+// because only one number doesn't divide integer by any of 2, 3, 5
+
+function realNumbers(n){
+  let counter = 0
+  if (n > 30) {
+    counter = 8 * Math.floor(n/30)
+    n = n % 30
+  }
+  for (let i = 1; i <= n; i++) {
+    if (i % 2 !== 0 && i % 3 !== 0 && i % 5 !== 0) {
+      counter ++
+    }
+  }
+  return counter
+}
+
+//top solution
+
+const {floor} = Math;
+
+function realNumbers(n){
+  return n
+       - floor(n / 2)
+       - floor(n / 3)
+       + floor(n / 6)
+       - floor(n / 5)
+       + floor(n / 10)
+       + floor(n / 15)
+       - floor(n / 30);
+}
+
+//single line solution
+
+function realNumbers(n) {
+  return n - ~~(n/2) - ~~(n/3) - ~~(n/5) + ~~(n/6) + ~~(n/10) + ~~(n/15) - ~~(n/30);
+}
+
 
 
 
