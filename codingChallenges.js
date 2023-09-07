@@ -748,6 +748,10 @@ function realNumbers(n) {
   return n - ~~(n/2) - ~~(n/3) - ~~(n/5) + ~~(n/6) + ~~(n/10) + ~~(n/15) - ~~(n/30);
 }
 
+//Double tilde removes any numbers after a decimal point. It took me a second to understand why this works but now I get it. You start by subtracting the total number of multiples of each number. But since you're accounting for numbers divisible by more than one number repeatedly you have to adjust with the addition of the multiples of each number multipled by another. The final subtraction accounts for the number 30 which is divisible by every number use thus far so it gets subtracted from the total three times, added back in three times, and finally subtracted once more at the end. Since the pattern of numbers fulfilling the conditions of the probem repeats every thirty numbers you don't need to go any further than that.
+
+
+
 
 
 
